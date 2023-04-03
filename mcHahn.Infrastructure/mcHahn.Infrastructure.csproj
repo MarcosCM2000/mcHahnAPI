@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\mcHahn.Application\mcHahn.Application.csproj" />
+  </ItemGroup>
+
 </Project>
