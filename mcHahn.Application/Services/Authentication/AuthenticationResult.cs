@@ -3,6 +3,7 @@
     public record AuthenticationResult(
     
         int id,
+        string name,
         string email,
         string token
     );
