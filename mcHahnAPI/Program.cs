@@ -1,9 +1,11 @@
-using mcHahn.Application.Services.Authentication;
+using mcHahn.Application;
+using mcHahn.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddInfrastructure();
+builder.Services.AddApplication();
 builder.Services.AddControllers();
 
 var app = builder.Build();
