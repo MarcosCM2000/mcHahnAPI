@@ -1,5 +1,4 @@
-﻿using mcHahn.Application.Common.Interfaces.Authentication;
-using mcHahn.Application.Services.Authentication;
+﻿using mcHahn.Application.Services.Authentication;
 using mcHahn.Contracts.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,26 +9,20 @@ namespace mcHahnAPI.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        
 
-        public AuthenticationController(IAuthenticationService authenticationService, IJwtTokenGenerator jwtTokenGenerator)
+        public AuthenticationController(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
-            _jwtTokenGenerator = jwtTokenGenerator;
         }
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
             Console.WriteLine("---Register---");
-            //TODO
-            //1. Check if user already exists
-            //2. If not: Create user (generate ID)
-            //3. Create JWT Token
-            var token = _jwtTokenGenerator.GenerateToken(new Random().Next(1, 10), request.name);
 
             var authResult = _authenticationService.Register(request.name, request.email, request.password);
             //  map values
-            var resp = new AuthenticationResponse(authResult.id, authResult.name, authResult.email, token);
+            var resp = new AuthenticationResponse(authResult.user.Id, authResult.user.Name, authResult.user.Email, authResult.token);
             Console.WriteLine(resp);
             return Ok(resp);
         }
@@ -47,7 +40,7 @@ namespace mcHahnAPI.Controllers
             Console.WriteLine(request);
             var authResult = _authenticationService.Login(request.email, request.password);
             //  map values
-            var resp = new AuthenticationResponse(authResult.id, authResult.name, authResult.email, authResult.token);
+            var resp = new AuthenticationResponse(authResult.user.Id, authResult.user.Name, authResult.user.Email, authResult.token);
             Console.WriteLine(resp);
             return Ok(resp);
         }

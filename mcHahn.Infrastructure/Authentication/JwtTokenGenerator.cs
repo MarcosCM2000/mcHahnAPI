@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
+using mcHahn.Domain.Entities;
 
 namespace mcHahn.Infrastructure.Authentication
 {
@@ -15,7 +16,7 @@ namespace mcHahn.Infrastructure.Authentication
         {
             _jwtSettings = jwtSettings.Value;
         }
-        public string GenerateToken(int id, string name)
+        public string GenerateToken(User user)
         {
             var signingCredentials = new SigningCredentials(
 
@@ -24,9 +25,9 @@ namespace mcHahn.Infrastructure.Authentication
             );
             var claims = new[] {
 
-                new Claim(JwtRegisteredClaimNames.Sub, id.ToString()),
-                new Claim(JwtRegisteredClaimNames.GivenName, name),
-                new Claim(JwtRegisteredClaimNames.Jti, id.ToString())
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.GivenName, user.Name),
+                new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString())
             };
             var securityToken = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
