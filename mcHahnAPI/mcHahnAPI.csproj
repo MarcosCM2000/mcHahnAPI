@@ -13,4 +13,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\mcHahn.Application\mcHahn.Application.csproj" />
+    <ProjectReference Include="..\mcHahn.Contracts\mcHahn.Contracts.csproj" />
+    <ProjectReference Include="..\mcHahn.Infrastructure\mcHahn.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
