@@ -4,12 +4,12 @@
     {
         public AuthenticationResult Login(string email, string password)
         {
-            return new AuthenticationResult(new Random().Next(1, 10), "name", email, "token");
+            return new AuthenticationResult(new Random().Next(1, 100), "name", email, "token");
         }
 
         public AuthenticationResult Register(string name, string email, string password)
         {
-            return new AuthenticationResult(new Random().Next(1, 10), name, email, "token");
+            return new AuthenticationResult(new Random().Next(1, 100), name, email, "token");
         }
     }
 }
