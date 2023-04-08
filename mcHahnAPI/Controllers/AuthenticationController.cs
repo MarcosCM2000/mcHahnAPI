@@ -1,11 +1,13 @@
 ﻿using mcHahn.Application.Services.Authentication;
 using mcHahn.Contracts.Authentication;
+using mcHahnAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace mcHahnAPI.Controllers
 {
     [ApiController]
     [Route("auth")]
+    //  [ErrorHandlingFilter]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
