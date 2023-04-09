@@ -82,6 +82,10 @@ namespace mcHahnAPI.Controllers
                 Id: new Random().Next(1, 100),
                 Created_at: new DateTime(),
                 ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));*/
+            if (!_shipmentService.DeleteShipment(request.Id))
+            {
+                return NoContent();
+            }
             return Ok();
         }
         [HttpPost("delete-all")]

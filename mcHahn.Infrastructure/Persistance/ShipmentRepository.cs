@@ -5,7 +5,7 @@ namespace mcHahn.Infrastructure.Persistance
 {
     public class ShipmentRepository : IShipmentRepository
     {
-        private Shipment shipment1 = new Shipment(
+        private static Shipment shipment1 = new Shipment(
             createdAt: DateTime.UtcNow,
             detail: new ShipmentDetail(address: "10 av", weight: 1, length: 2, width: 3, height: 4)
         );
@@ -15,11 +15,6 @@ namespace mcHahn.Infrastructure.Persistance
         );
         private static List<Shipment> _shipments = new();
 
-        public ShipmentRepository()
-        {
-            _shipments.Add(shipment1);
-            _shipments.Add(shipment2);
-        }
         public void Add(Shipment shipment)
         {
             _shipments.Add(shipment);

@@ -25,7 +25,13 @@ namespace mcHahn.Application.Services.Shipments
 
         public bool DeleteShipment(int id)
         {
-            throw new NotImplementedException();
+            //  Check if id exists
+            if (_shipmentRepository.GetShipmentById(id) is null)
+            {
+                throw new Exception("Id does not exists.");                
+            }
+            _shipmentRepository.Delete(id);
+            return true;
         }
 
         public ShipmentResult EditShipment(int id, DateTime createdAt, object detail)
