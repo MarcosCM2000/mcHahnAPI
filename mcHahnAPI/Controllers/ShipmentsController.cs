@@ -17,10 +17,6 @@ namespace mcHahnAPI.Controllers
         [HttpGet("all")] 
         public IActionResult GetAllShipments() {
             Console.WriteLine("GetAllShipments");
-            /*var resp = new ShipmentResponse(
-                Id: new Random().Next(1,100),
-                Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height:0));*/
             var resp = _shipmentService.GetAllShipments();
             return Ok(resp);
         }
@@ -42,10 +38,13 @@ namespace mcHahnAPI.Controllers
             {
                 return BadRequest("Error on entered inputs. Please validate.");
             }
-            var resp = new ShipmentResponse(
+            /*var resp = new ShipmentResponse(
                 Id: new Random().Next(1, 100),
                 Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));
+                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));*/
+            var resp = _shipmentService.CreateShipment(
+                request.CreatedAt, request.Detail.Address, request.Detail.Weight,
+                request.Detail.Length, request.Detail.Width, request.Detail.Height);
             return Ok(resp);
         }
         [HttpPatch("edit")]

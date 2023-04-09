@@ -1,4 +1,5 @@
 ﻿using mcHahn.Application.Common.Interfaces.Persistance;
+using mcHahn.Domain.Entities;
 
 namespace mcHahn.Application.Services.Shipments
 {
@@ -9,9 +10,12 @@ namespace mcHahn.Application.Services.Shipments
         {
             _shipmentRepository = shipmentRepository;
         }
-        public ShipmentResult CreateShipment(DateTime createdAt, object detail)
+        public ShipmentResult CreateShipment(DateTime createdAt, string address, int weight, int length, int width, int height)
         {
-            throw new NotImplementedException();
+            var newShipmentDetail = new ShipmentDetail(address, weight, length, width, height);
+            var newShipment = new Shipment(createdAt, newShipmentDetail);
+            _shipmentRepository.Add(newShipment);
+            return new ShipmentResult(newShipment);
         }
 
         public bool DeleteAllShipments()
