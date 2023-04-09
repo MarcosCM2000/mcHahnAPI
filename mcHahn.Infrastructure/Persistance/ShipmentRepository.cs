@@ -28,6 +28,7 @@ namespace mcHahn.Infrastructure.Persistance
 
         public void DeleteAll()
         {
+            //_shipments = new();
             _shipments.Clear();
         }
 

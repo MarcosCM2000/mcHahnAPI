@@ -18,9 +18,9 @@ namespace mcHahn.Application.Services.Shipments
             return new ShipmentResult(newShipment);
         }
 
-        public bool DeleteAllShipments()
+        public void DeleteAllShipments()
         {
-            throw new NotImplementedException();
+            _shipmentRepository.DeleteAll();
         }
 
         public bool DeleteShipment(int id)

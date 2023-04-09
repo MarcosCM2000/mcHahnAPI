@@ -38,10 +38,6 @@ namespace mcHahnAPI.Controllers
             {
                 return BadRequest("Error on entered inputs. Please validate.");
             }
-            /*var resp = new ShipmentResponse(
-                Id: new Random().Next(1, 100),
-                Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));*/
             var resp = _shipmentService.CreateShipment(
                 request.CreatedAt, request.Detail.Address, request.Detail.Weight,
                 request.Detail.Length, request.Detail.Width, request.Detail.Height);
@@ -78,10 +74,6 @@ namespace mcHahnAPI.Controllers
         public IActionResult DeleteShipment(DeleteRequest request)
         {
             Console.WriteLine("DeleteShipment");
-            /*var resp = new ShipmentResponse(
-                Id: new Random().Next(1, 100),
-                Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));*/
             if (!_shipmentService.DeleteShipment(request.Id))
             {
                 return NoContent();
@@ -92,10 +84,7 @@ namespace mcHahnAPI.Controllers
         public IActionResult DeleteAllShipments()
         {
             Console.WriteLine("DeleteAllShipments");
-            /*var resp = new ShipmentResponse(
-                Id: new Random().Next(1, 100),
-                Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));*/
+            _shipmentService.DeleteAllShipments();
             return Ok();
         }
     }

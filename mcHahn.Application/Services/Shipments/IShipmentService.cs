@@ -8,6 +8,6 @@ namespace mcHahn.Application.Services.Shipments
         ShipmentResult CreateShipment(DateTime createdAt, string address, int weight, int length, int width, int height);
         ShipmentResult EditShipment(int id, DateTime createdAt, object detail);
         bool DeleteShipment(int id);
-        bool DeleteAllShipments();
+        void DeleteAllShipments();
     }
 }
