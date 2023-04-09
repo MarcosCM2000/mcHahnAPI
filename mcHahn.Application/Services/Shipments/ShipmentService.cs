@@ -34,9 +34,18 @@ namespace mcHahn.Application.Services.Shipments
             return true;
         }
 
-        public ShipmentResult EditShipment(int id, DateTime createdAt, object detail)
+        public ShipmentResult EditShipment(int id, DateTime createdAt, string address, int weight, int length, int width, int height)
         {
-            throw new NotImplementedException();
+            //  Check if id exists
+            if (_shipmentRepository.GetShipmentById(id) is null)
+            {
+                throw new Exception("Id does not exists.");
+            }
+            var editedShipmentDetail = new ShipmentDetail(address, weight, length, width, height);
+            var editedShipment = new Shipment(createdAt, editedShipmentDetail);
+            editedShipment.Id = id;
+            _shipmentRepository.Edit(editedShipment);
+            return new ShipmentResult(editedShipment);
         }
 
         public List<ShipmentResult> GetAllShipments()

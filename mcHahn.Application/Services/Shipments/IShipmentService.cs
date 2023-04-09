@@ -6,7 +6,7 @@ namespace mcHahn.Application.Services.Shipments
     {
         List<ShipmentResult> GetAllShipments();
         ShipmentResult CreateShipment(DateTime createdAt, string address, int weight, int length, int width, int height);
-        ShipmentResult EditShipment(int id, DateTime createdAt, object detail);
+        ShipmentResult EditShipment(int id, DateTime createdAt, string address, int weight, int length, int width, int height);
         bool DeleteShipment(int id);
         void DeleteAllShipments();
     }

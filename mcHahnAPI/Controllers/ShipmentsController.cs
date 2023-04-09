@@ -54,21 +54,19 @@ namespace mcHahnAPI.Controllers
                 length: request.Detail.Length,
                 width: request.Detail.Width,
                 height: request.Detail.Height);
-            var validatedShipment = new Shipment(createdAt: request.CreatedAt, detail: validatedShipmentDetail)
-            {
-                Id = request.Id
-            };
+            var validatedShipment = new Shipment(createdAt: request.CreatedAt, detail: validatedShipmentDetail);
+            validatedShipment.Id = request.Id;
+
             var validator = new ShipmentValidator();
             var results = validator.Validate(validatedShipment);
             if (!results.IsValid)
             {
                 return BadRequest("Error on entered inputs. Please validate.");
             }
-            /*var resp = new ShipmentResponse(
-                Id: new Random().Next(1, 100),
-                Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height: 0));*/
-            return Ok();
+            var resp = _shipmentService.EditShipment(
+                request.Id, request.CreatedAt, request.Detail.Address, request.Detail.Weight,
+                request.Detail.Length, request.Detail.Width, request.Detail.Height);
+            return Ok(resp);
         }
         [HttpPost("delete")]
         public IActionResult DeleteShipment(DeleteRequest request)
