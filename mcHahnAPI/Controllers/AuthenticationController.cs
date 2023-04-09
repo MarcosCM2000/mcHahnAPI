@@ -1,10 +1,8 @@
 ﻿using mcHahn.Application.Services.Authentication;
 using mcHahn.Contracts.Authentication;
 using mcHahn.Domain.Entities;
-using mcHahnAPI.Filters;
 using mcHahnAPI.Validators;
 using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
 
 namespace mcHahnAPI.Controllers
 {
