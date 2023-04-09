@@ -9,9 +9,17 @@ namespace mcHahn.Domain.Entities
     public class ShipmentDetail
     {
         public string Address { get; set; } = null!;
-        public int Weight { get; set; } = 0;
-        public int Length { get; set; } = 0;
-        public int Width { get; set; } = 0;
-        public int Height { get; set; } = 0;
+        public int Weight { get; set; }
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public ShipmentDetail(string address, int weight, int length, int width, int height)
+        {
+            Address = address;
+            Weight = weight;
+            Length = length;
+            Width = width;
+            Height = height;
+        }
     }
 }

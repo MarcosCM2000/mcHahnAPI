@@ -9,7 +9,13 @@ namespace mcHahn.Domain.Entities
     public class Shipment
     {
         public int Id { get; set; } = new Random().Next(1, 100);
-        public DateTime Created_at { get; set; } = DateTime.MinValue;
-        public ShipmentDetail Detail { get; set; } = new ShipmentDetail { };
+        public DateTime Created_at { get; set; }
+        public ShipmentDetail Detail { get; set; }
+
+        public Shipment(DateTime createdAt, ShipmentDetail detail)
+        {
+            Created_at = createdAt;
+            Detail = detail;
+        }
     }
 }
