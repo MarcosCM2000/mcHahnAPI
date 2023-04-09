@@ -1,10 +1,10 @@
-﻿namespace mcHahn.Application.Services.Authentication
+﻿using mcHahn.Domain.Entities;
+
+namespace mcHahn.Application.Services.Authentication
 {
     public record AuthenticationResult(
     
-        int id,
-        string name,
-        string email,
+        User user,
         string token
     );
 }

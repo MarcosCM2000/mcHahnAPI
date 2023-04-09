@@ -2,6 +2,8 @@
 using mcHahn.Infrastructure.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using mcHahn.Application.Common.Interfaces.Persistance;
+using mcHahn.Infrastructure.Persistance;
 
 namespace mcHahn.Infrastructure
 {
@@ -9,8 +11,10 @@ namespace mcHahn.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, ConfigurationManager configuration)
         {
-            services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IShipmentRepository, ShipmentRepository>();
+            services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
             return services;
         }
     }

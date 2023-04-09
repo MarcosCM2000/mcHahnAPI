@@ -1,7 +1,9 @@
-﻿namespace mcHahn.Application.Common.Interfaces.Authentication
+﻿using mcHahn.Domain.Entities;
+
+namespace mcHahn.Application.Common.Interfaces.Authentication
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(int id, string name);
+        string GenerateToken(User user);
     }
 }
