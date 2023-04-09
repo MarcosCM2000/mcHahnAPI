@@ -14,12 +14,12 @@ namespace mcHahn.Application.Services.Shipments
             throw new NotImplementedException();
         }
 
-        public ShipmentResult DeleteAllShipments()
+        public bool DeleteAllShipments()
         {
             throw new NotImplementedException();
         }
 
-        public ShipmentResult DeleteShipment(int id)
+        public bool DeleteShipment(int id)
         {
             throw new NotImplementedException();
         }
@@ -29,9 +29,13 @@ namespace mcHahn.Application.Services.Shipments
             throw new NotImplementedException();
         }
 
-        public ShipmentResult GetAllShipments()
+        public List<ShipmentResult> GetAllShipments()
         {
-            throw new NotImplementedException();
+            var shipments = _shipmentRepository.GetAll();
+            var result = new List<ShipmentResult>();
+            shipments.ForEach((shipment) => result.Add(new ShipmentResult(shipment)));
+            
+            return result;
         }
     }
 }

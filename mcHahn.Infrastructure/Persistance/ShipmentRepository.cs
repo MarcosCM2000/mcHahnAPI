@@ -5,7 +5,21 @@ namespace mcHahn.Infrastructure.Persistance
 {
     public class ShipmentRepository : IShipmentRepository
     {
+        private Shipment shipment1 = new Shipment(
+            createdAt: DateTime.UtcNow,
+            detail: new ShipmentDetail(address: "10 av", weight: 1, length: 2, width: 3, height: 4)
+        );
+        private Shipment shipment2 = new Shipment(
+            createdAt: DateTime.UtcNow,
+            detail: new ShipmentDetail(address: "20 av", weight: 10, length: 20, width: 30, height: 40)
+        );
         private static List<Shipment> _shipments = new();
+
+        public ShipmentRepository()
+        {
+            _shipments.Add(shipment1);
+            _shipments.Add(shipment2);
+        }
         public void Add(Shipment shipment)
         {
             _shipments.Add(shipment);
@@ -26,6 +40,11 @@ namespace mcHahn.Infrastructure.Persistance
         {
             var index = _shipments.IndexOf(shipment);
             _shipments[index] = shipment;
+        }
+
+        public List<Shipment> GetAll()
+        {
+            return _shipments;
         }
 
         public Shipment? GetShipmentById(int id)

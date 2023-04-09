@@ -2,10 +2,10 @@
 {
     public interface IShipmentService
     {
-        ShipmentResult GetAllShipments();
+        List<ShipmentResult> GetAllShipments();
         ShipmentResult CreateShipment(DateTime createdAt, object detail);
         ShipmentResult EditShipment(int id, DateTime createdAt, object detail);
-        ShipmentResult DeleteShipment(int id);
-        ShipmentResult DeleteAllShipments();
+        bool DeleteShipment(int id);
+        bool DeleteAllShipments();
     }
 }

@@ -1,4 +1,5 @@
-﻿using mcHahn.Contracts.Shipments;
+﻿using mcHahn.Application.Services.Shipments;
+using mcHahn.Contracts.Shipments;
 using mcHahn.Domain.Entities;
 using mcHahnAPI.Validators;
 using Microsoft.AspNetCore.Mvc;
@@ -9,16 +10,18 @@ namespace mcHahnAPI.Controllers
     [Route("shipments")]
     public class ShipmentsController : ControllerBase
     {
-        public ShipmentsController() { 
-            
+        private readonly IShipmentService _shipmentService;
+        public ShipmentsController(IShipmentService shipmentService) { 
+            _shipmentService = shipmentService;
         }
         [HttpGet("all")] 
         public IActionResult GetAllShipments() {
             Console.WriteLine("GetAllShipments");
-            var resp = new ShipmentResponse(
+            /*var resp = new ShipmentResponse(
                 Id: new Random().Next(1,100),
                 Created_at: new DateTime(),
-                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height:0));
+                ShipmentDetail: new ShipmentDetailResponse(Address: "", Weight: 0, Length: 0, Width: 0, Height:0));*/
+            var resp = _shipmentService.GetAllShipments();
             return Ok(resp);
         }
         [HttpPost("add")]

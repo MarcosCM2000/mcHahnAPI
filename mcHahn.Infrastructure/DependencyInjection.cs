@@ -13,6 +13,7 @@ namespace mcHahn.Infrastructure
         {
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IShipmentRepository, ShipmentRepository>();
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
             return services;
         }
