@@ -23,7 +23,7 @@ namespace mcHahnAPI.Middleware
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var code = HttpStatusCode.InternalServerError;
-            var result = JsonSerializer.Serialize(new { error = $"An error ocurred while processing the request. Problem: {ex.Message}" });
+            var result = JsonSerializer.Serialize(new { error = $"Problem: {ex.Message}" });
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
             return context.Response.WriteAsync(result);

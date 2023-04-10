@@ -31,7 +31,7 @@ namespace mcHahnAPI.Controllers
                 length: request.Detail.Length,
                 width: request.Detail.Width,
                 height: request.Detail.Height);
-            var validatedShipment = new Shipment(createdAt: request.CreatedAt, detail: validatedShipmentDetail);
+            var validatedShipment = new Shipment(createdAt: DateTime.Parse(request.CreatedAt), detail: validatedShipmentDetail);
             var validator = new ShipmentValidator();
             var results = validator.Validate(validatedShipment);
             if (!results.IsValid)
@@ -39,7 +39,7 @@ namespace mcHahnAPI.Controllers
                 return BadRequest("Error on entered inputs. Please validate.");
             }
             var resp = _shipmentService.CreateShipment(
-                request.CreatedAt, request.Detail.Address, request.Detail.Weight,
+                DateTime.Parse(request.CreatedAt), request.Detail.Address, request.Detail.Weight,
                 request.Detail.Length, request.Detail.Width, request.Detail.Height);
             return Ok(resp);
         }

@@ -15,7 +15,7 @@ namespace mcHahn.Application.Services.Shipments
             var newShipmentDetail = new ShipmentDetail(address, weight, length, width, height);
             var newShipment = new Shipment(createdAt, newShipmentDetail);
             _shipmentRepository.Add(newShipment);
-            return new ShipmentResult(newShipment);
+            return new ShipmentResult(newShipment.Id, newShipment.Created_at, newShipment.Detail);
         }
 
         public void DeleteAllShipments()
@@ -45,14 +45,14 @@ namespace mcHahn.Application.Services.Shipments
             var editedShipment = new Shipment(createdAt, editedShipmentDetail);
             editedShipment.Id = id;
             _shipmentRepository.Edit(editedShipment);
-            return new ShipmentResult(editedShipment);
+            return new ShipmentResult(editedShipment.Id, editedShipment.Created_at, editedShipment.Detail);
         }
 
         public List<ShipmentResult> GetAllShipments()
         {
             var shipments = _shipmentRepository.GetAll();
             var result = new List<ShipmentResult>();
-            shipments.ForEach((shipment) => result.Add(new ShipmentResult(shipment)));
+            shipments.ForEach((shipment) => result.Add(new ShipmentResult(shipment.Id, shipment.Created_at, shipment.Detail)));
             
             return result;
         }
