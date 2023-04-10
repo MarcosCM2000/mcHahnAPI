@@ -3,6 +3,9 @@
 namespace mcHahn.Application.Services.Shipments
 {
     public record ShipmentResult(
-        Shipment Shipment
+        //  Shipment Shipment
+        int Id,
+        DateTime Created_at,
+        ShipmentDetail Detail
     );
 }

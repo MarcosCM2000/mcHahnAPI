@@ -24,6 +24,7 @@ namespace mcHahnAPI.Controllers
         public IActionResult CreateShipment(CreateRequest request)
         {
             Console.WriteLine("CreateShipment");
+            Console.WriteLine(request.CreatedAt);
             //  Fluent Validation
             var validatedShipmentDetail = new ShipmentDetail(
                 address: request.Detail.Address,
