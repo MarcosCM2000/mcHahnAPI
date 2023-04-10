@@ -1,7 +1,7 @@
 ﻿namespace mcHahn.Contracts.Shipments
 {
-    public record CreateRequest(
-        DateTime CreatedAt,
-        DetailRequest Detail
-    );
+    public record struct CreateRequest { 
+        public DetailRequest Detail { get; init; }
+        public string CreatedAt { get; init; }
+    };
 }

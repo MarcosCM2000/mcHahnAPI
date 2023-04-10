@@ -8,7 +8,7 @@ namespace mcHahnAPI.Validators
         public ShipmentValidator()
         {
             RuleFor(shipment => shipment.Id).NotNull().NotEmpty();
-            RuleFor(shipment => shipment.Created_at).NotNull();
+            //  RuleFor(shipment => shipment.Created_at).NotNull();
             RuleFor(shipment => shipment.Detail.Address).NotEmpty();
             RuleFor(shipment => shipment.Detail.Weight).GreaterThan(0);
             RuleFor(shipment => shipment.Detail.Length).GreaterThan(0);
