@@ -1,6 +1,5 @@
 using mcHahn.Application;
 using mcHahn.Infrastructure;
-using mcHahnAPI.Filters;
 using mcHahnAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +10,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: myAllowSpecificOrigins,
         policy => {
-            policy.WithOrigins("http://localhost:4200")
+            policy.WithOrigins("http://localhost:80")
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowAnyOrigin();
         });
 });
 // FILTERS
@@ -26,7 +26,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseHttpsRedirection();
+//  app.UseHttpsRedirection();
 app.UseCors(myAllowSpecificOrigins);
 app.UseAuthorization();
 app.MapControllers();

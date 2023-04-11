@@ -16,14 +16,12 @@ namespace mcHahnAPI.Controllers
         }
         [HttpGet("all")] 
         public IActionResult GetAllShipments() {
-            Console.WriteLine("GetAllShipments");
             var resp = _shipmentService.GetAllShipments();
             return Ok(resp);
         }
         [HttpPost("add")]
         public IActionResult CreateShipment(CreateRequest request)
         {
-            Console.WriteLine("CreateShipment");
             //  Fluent Validation
             var validatedShipmentDetail = new ShipmentDetail(
                 address: request.Detail.Address,
@@ -43,10 +41,9 @@ namespace mcHahnAPI.Controllers
                 request.Detail.Length, request.Detail.Width, request.Detail.Height);
             return Ok(resp);
         }
-        [HttpPatch("edit")]
+        [HttpPut("edit")]
         public IActionResult EditShipment(EditRequest request)
         {
-            Console.WriteLine("EditShipment");
             //  Fluent Validation
             var validatedShipmentDetail = new ShipmentDetail(
                 address: request.Detail.Address,
@@ -71,7 +68,6 @@ namespace mcHahnAPI.Controllers
         [HttpPost("delete")]
         public IActionResult DeleteShipment(DeleteRequest request)
         {
-            Console.WriteLine("DeleteShipment");
             if (!_shipmentService.DeleteShipment(request.Id))
             {
                 return NoContent();
@@ -81,7 +77,6 @@ namespace mcHahnAPI.Controllers
         [HttpPost("delete-all")]
         public IActionResult DeleteAllShipments()
         {
-            Console.WriteLine("DeleteAllShipments");
             _shipmentService.DeleteAllShipments();
             return Ok();
         }

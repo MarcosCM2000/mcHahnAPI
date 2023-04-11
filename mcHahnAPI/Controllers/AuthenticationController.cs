@@ -21,7 +21,6 @@ namespace mcHahnAPI.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            Console.WriteLine("---Register---");
             //  Fluent Validation
             var validatedUser = new User { Name = request.name, Email = request.email, Password = request.password };
             var validator = new UserValidator();
@@ -33,14 +32,12 @@ namespace mcHahnAPI.Controllers
             var authResult = _authenticationService.Register(request.name, request.email, request.password);
             //  map values
             var resp = new AuthenticationResponse(authResult.user.Id, authResult.user.Name, authResult.user.Email, authResult.token);
-            Console.WriteLine(resp);
             return Ok(resp);
         }
 
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            Console.WriteLine("---Login---");
             //  Fluent Validation
             var validatedUser = new User { Name = "", Email = request.email, Password = request.password };
             var validator = new UserValidator();
@@ -52,7 +49,6 @@ namespace mcHahnAPI.Controllers
             var authResult = _authenticationService.Login(request.email, request.password);
             //  map values
             var resp = new AuthenticationResponse(authResult.user.Id, authResult.user.Name, authResult.user.Email, authResult.token);
-            Console.WriteLine(resp);
             return Ok(resp);
         }
     }
