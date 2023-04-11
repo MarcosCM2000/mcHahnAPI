@@ -16,8 +16,6 @@ builder.Services.AddCors(options =>
             .AllowAnyOrigin();
         });
 });
-// FILTERS
-//  builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
 // Add services to the container.
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
